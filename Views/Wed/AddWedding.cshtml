@@ -1,0 +1,43 @@
+@using WeddingPlanner.Models
+@model WeddingModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewBag.Title
+        @{
+            ViewBag.Title = "Add a Wedding!";
+        }
+    </title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-md-offset-4">
+                <h1 class="text-center login-title">Plan Your Wedding</h1>
+                <div class="account-wall">
+                    <img class="profile-img" src="~/images/beanwed.jpg">
+                <!-- FORM -->
+                    <form class="form-signin" asp-action="CreateProcess" asp-controller="Wed">
+                    <input type="text" class="form-control" asp-for="WedderOne" placeholder="Wedder One">
+                        <span style = "color: red;" asp-validation-for="WedderOne"></span><br>
+                    <input type="text" class="form-control" asp-for="WedderTwo" placeholder="Wedder Two">
+                        <span style = "color: red;" asp-validation-for="WedderTwo"></span><br>
+                    <input type="date" class="form-control" asp-for="Date" placeholder="Date">
+                        <span style = "color: red;" asp-validation-for="Date"></span><br>
+                    <input type="text" class="form-control" asp-for="Address" placeholder="Address">
+                        <span style = "color: red;" asp-validation-for="Address"></span><br>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+                    <hr>
+                    <p style="text-align: center;"><a href="/dashboard" class="btn btn-info">Dashboard</a> <a href="/logout" class="btn btn-info">Log Out</a></p>
+                    </form>
+                <!-- FORM END -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+@using WeddingPlanner.Models
+@model List<WeddingModel>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <link rel="stylesheet" href="~/css/dashboard.css">
+    <title>@ViewBag.Title
+        @{
+            ViewBag.Title = "Welcome!";
+        }
+    </title>
+</head>
+<body>
+    <h1 style="text-align: center;">Hey, <strong style="color: red;">@ViewBag.firstname @ViewBag.lastname</strong> ! 
+    <br>Welcome to the <strong>Wedding Planner</strong> !</h1>
+    <h3 style="text-align: center;"><a  class="btn btn-danger" href="/logout">Logout</a></h3>
+    <!-- table -->
+    <hr>
+    <table id="dtVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th class="th-sm">Wedding</th>
+                <th class="th-sm">Date</th>
+                <th class="th-sm">Guest</th>
+                <th class="th-sm">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (WeddingModel w in @Model)
+                {
+                <tr>
+                    <td> <a id="details" href="/wedding/@w.WedId">@w.WedderOne & @w.WedderTwo</a></td>
+                    <td>@w.Date.ToString("MMM d yyyy")</td>
+                    <td>@w.guest.Count</td>
+                    <td>
+                        @if(@ViewBag.UserID == @w.UserId)
+                        {
+                            <a href="/delete/@w.WedId" class="btn btn-primary">Delete</a>
+                        }
+                        @{
+                            var count = 0;
+                            foreach (var guest in @w.guest)
+                            {
+                                if(@ViewBag.UserId == guest.UserId)
+                                {
+                                    count++;
+                                }
+                            }
+                            if (count == 0)
+                            {
+                                <a href="/rsvp/@w.WedId" class="btn btn-success">RSVP</a>
+                            }
+                            else
+                            {
+                                <a href="/rsvp/@w.WedId" class="btn btn-danger">UN-RSVP</a>
+                            }
+                        }
+                    </td>
+                </tr>              
+                }
+            }
+        </tbody>
+    </table>
+    <hr>
+    <a class="btn btn-success" href="/addwedding" type="submit">New Wedding</a><hr>
+</body>

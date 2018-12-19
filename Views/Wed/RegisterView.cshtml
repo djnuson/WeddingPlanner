@@ -1,0 +1,51 @@
+@using WeddingPlanner.Models
+@model User
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="~/css/site.css">
+    <title>@ViewBag.Title
+        @{
+            ViewBag.Title = "Registration Page";
+        }
+    </title>
+</head>
+
+<body>    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-md-offset-4">
+                <h1 class="text-center login-title">Welcome to the <strong>Wedding Planner.</strong> <br>Please Register!</h1>
+                <div class="account-wall">
+                    <img class="profile-img" src="~/images/bean.jpg">
+                <!-- FORM -->
+                    <form class="form-signin" asp-action="RegisterProcess" asp-controller="Wed">
+                    <input type="text" class="form-control" asp-for="FirstName" placeholder="First Name">
+                        <span style = "color: red;" asp-validation-for="FirstName"></span><br>
+                    <input type="text" class="form-control" asp-for="LastName" placeholder="Last Name">
+                        <span style = "color: red;" asp-validation-for="LastName"></span><br>
+                    <input type="text" class="form-control" asp-for="Email" placeholder="Email">
+                        <span style = "color: red;" asp-validation-for="Email"></span><br>
+                    <input type="password" class="form-control" asp-for="Password" placeholder="Password">
+                        <span style = "color: red;" asp-validation-for="Password"></span><br>
+                    <input type="password" class="form-control" asp-for="ConfirmPW" placeholder="Password Confirmation">
+                        <span style = "color: red;" asp-validation-for="ConfirmPW"></span><br>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+                    <hr>
+                    <a href="login" class="text-center new-account">Have an Account? Log In then, goshhh! </a>
+                    </form>
+                <!-- FORM END -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
